@@ -1,0 +1,368 @@
+anomaly_coffee_fridge:
+    label: 'fridge'
+    path: 'data/containers/fridges/12252/'
+    exclude_prob: 0.8
+    rooms:
+        living_room: 0.1
+        bedroom: 0.3
+        kitchen: 0.5
+        garage: 0.1
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                coffee: 'Coffee/'
+# python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Pantry/Coffee/ data/containers/fridges/12252/12252.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000
+anomaly_canned_cabinet: # ONLY TEST CONTAINER
+    label: 'cabinet'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.8
+    rooms:
+        bedroom: 0.1
+        kitchen: 0.5
+        garage: 0.2
+        living_room: 0.2 #ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_3'
+            object_types:
+                canned_food: 'Canned_Food/left'
+anomaly_canned_shelves:
+    label: 'shelves'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.8
+    rooms:
+        bedroom: 0.1
+        kitchen: 0.5
+        garage: 0.2
+        living_room: 0.2 #ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_3'
+            object_types:
+                canned_food: 'Canned_Food/left'
+anomaly_boardgames_pantry:
+    label: 'pantry'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.7
+    rooms:
+        closet: 0.2
+        bedroom: 0.2
+        living_room: 0.5
+        garage: 0.1 #ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                board_games: 'BoardGames'
+# X python scripts/generate_shelf_obj_placements.py data/objects/LivingRoom/BoardGames/ data/containers/closets/41085/41085.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --obj_scale 0.8
+anomaly_fruit_cabinet:
+    label: 'cabinet'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.7
+    rooms:
+        closet: 0.1
+        bedroom: 0.1
+        garage: 0.05
+        living_room: 0.75
+    shelves:
+        upper_shelf:
+            path: 'shelf_3'
+            object_types:
+                fruit: 'Fruit/left'
+# python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Fruit/ data/containers/closets/41085/41085.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 3 --side left --num_generate 1000
+soda_pantry:
+    label: 'pantry'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.5
+    rooms:
+        kitchen: 0.7
+        bedroom: 0.1
+        garage: 0.1
+        living_room: 0.1 # ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                drinks: 'Drinks'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Drinks/ data/containers/closets/41085/41085.urdf --num_objects 3 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000 --obj_scale 0.5
+kitchen_fridge:
+    label: 'fridge'
+    path: 'data/containers/fridges/11712/'
+    rooms:
+        kitchen: 0.9
+        bedroom: 0.025
+        garage: 0.025
+        living_room: 0.05 # ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_2'
+            object_types:
+                dairy: 'Dairy/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Dairy/ data/containers/fridges/11712/11712.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side left
+                canned_food: 'Canned_Food/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Canned_Food/ data/containers/fridges/11712/11712.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side right
+        middle_shelf:
+            path: 'shelf_1'
+            object_types:
+                fruit: 'Fruit/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Fruit/ data/containers/fridges/11712/11712.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --side left
+                veggies: 'Veggies/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Veggies/ data/containers/fridges/11712/11712.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --side right
+soda_fridge:
+    label: 'fridge'
+    path: 'data/containers/fridges/11712/'
+    exclude_prob: 0.5
+    rooms:
+        kitchen: 0.1
+        bedroom: 0.4
+        garage: 0.4
+        living_room: 0.1 # ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                fruit: 'Drinks'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Drinks/ data/containers/fridges/11712/11712.urdf --num_objects 3 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000
+minifridge:
+    label: 'fridge'
+    path: 'data/containers/fridges/12252/'
+    exclude_prob: 0.5
+    rooms:
+        living_room: 0.1
+        bedroom: 0.1
+        garage: 0.7
+        kitchen: 0.1 # ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                canned_food: 'Canned_Food'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Fridge/Canned_Food/ data/containers/fridges/12252/12252.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000
+kitchen_pantry:
+    label: 'pantry'
+    path: 'data/containers/closets/41085/'
+    rooms:
+        kitchen: 0.8
+        closet: 0.1
+        garage: 0.1 #ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_3'
+            object_types:
+                coffee: 'Coffee/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Pantry/Coffee/ data/containers/closets/41085/41085.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 3 --side left --num_generate 1000
+                protein: 'Protein/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Pantry/Protein/ data/containers/closets/41085/41085.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 3 --side right --num_generate 1000
+        lower_shelf:
+            path: 'shelf_2'
+            object_types:
+                cooking: 'Cooking/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Pantry/Cooking/ data/containers/closets/41085/41085.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side left
+bedroom_pantry:
+    label: 'pantry'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.5
+    rooms:
+        bedroom: 0.5
+        living_room: 0.2
+        kitchen: 0.3 #ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_2'
+            object_types:
+                snacks: 'Snacks/right'
+snack_cabinet: # ONLY TEST CONTAINER
+    label: 'cabinet'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.5
+    rooms:
+        bedroom: 0.8
+        living_room: 0.1
+        kitchen: 0.1 #ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_2'
+            object_types:
+                snacks: 'Snacks/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Pantry/Snacks/ data/containers/closets/41085/41085.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side right
+kitchenware_shelves:
+    label: 'shelves'
+    path: 'data/containers/closets/41085/'
+    rooms:
+        kitchen: 0.85
+        closet: 0.1
+        living_room: 0.05 # ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_2'
+            object_types:
+                cups: 'Cups/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Cups data/containers/closets/41085/41085.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side right
+                plating: 'Serving/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Serving/ data/containers/closets/41085/41085.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side left
+cooking_cabinet:
+    label: 'cabinet'
+    path: 'data/containers/closets/45696/'
+    rooms:
+        kitchen: 0.85
+        closet: 0.1
+        living_room: 0.05 # ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                tools: 'Tools/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Tools/ data/containers/closets/45696/45696.urdf --num_objects 4 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000 --side right
+                pans: 'Pans/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Kitchen/Pans/ data/containers/closets/45696/45696.urdf --num_objects 3 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000 --side left
+videogames_cabinet:
+    label: 'cabinet'
+    path: 'data/containers/shelves/normal'
+    exclude_prob: 0.3
+    rooms:
+        closet: 0.1
+        bedroom: 0.8
+        living_room: 0.1
+    shelves:
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                video_games: 'VideoGames'
+# python scripts/generate_shelf_obj_placements.py data/objects/LivingRoom/VideoGames/ data/containers/shelves/normal/normal.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --obj_scale 0.8
+boardgames_shelves:
+    label: 'shelves'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.4
+    rooms:
+        closet: 0.1
+        bedroom: 0.1
+        living_room: 0.7
+        garage: 0.1 # ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                board_games: 'BoardGames'
+# X python scripts/generate_shelf_obj_placements.py data/objects/LivingRoom/BoardGames/ data/containers/closets/41085/41085.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --obj_scale 0.8
+toys_cabinet:
+    label: 'cabinet'
+    path: 'data/containers/closets/45503'
+    exclude_prob: 0.4
+    rooms:
+        closet: 0.1
+        bedroom: 0.7
+        living_room: 0.1
+        garage: 0.1 # ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_2'
+            object_types:
+                toys: 'Toys/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bedroom/Toys/ data/containers/closets/45503/45503.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side right
+                action_figures: 'ActionFigures/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bedroom/ActionFigures/ data/containers/closets/45503/45503.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 2 --num_generate 1000 --side left
+medicine_shelves:
+    label: 'shelves'
+    path: 'data/containers/shelves/normal'
+    exclude_prob: 0.5
+    rooms:
+        bathroom: 0.8
+        bedroom: 0.1
+        garage: 0.1 # ONLY TEST
+    shelves:
+    shelves:
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                medicine: 'Medicine/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bathroom/Medicine/ data/containers/shelves/normal/normal.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --obj_scale 0.8 --side left
+medicine_cabinet:
+    label: 'cabinet'
+    path: 'data/containers/shelves/normal'
+    exclude_prob: 0.2
+    rooms:
+        bathroom: 0.8
+        bedroom: 0.1
+        garage: 0.1 # ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                hair: 'Hair/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bathroom/Hair/ data/containers/shelves/normal/normal.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --obj_scale 0.8 --side right
+                medicine: 'Medicine/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bathroom/Medicine/ data/containers/shelves/normal/normal.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --obj_scale 0.8 --side left
+towel_shelves:
+    label: 'shelves'
+    path: 'data/containers/closets/41085/'
+    exclude_prob: 0.1
+    rooms:
+        bathroom: 0.5
+        bedroom: 0.1
+        garage: 0.3
+        living_room: 0.1 #ONLY TEST
+    shelves:
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                towels: 'Towels'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bathroom/Towels/ data/containers/closets/41085/41085.urdf --num_objects 3 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000
+clothes_shelves: # ONLY TEST CONTAINER
+    label: 'shelves'
+    path: 'data/containers/closets/45696/'
+    exclude_prob: 0.5
+    rooms:
+        closet: 0.7
+        bedroom: 0.1
+        garage: 0.1
+        living_room: 0.1 # ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                sports: 'Sports/right'
+                sandals: 'Sandals/left'
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                formal: 'Formal/left'
+                hats: 'Hats/right'
+clothes_cabinet:
+    label: 'cabinet'
+    path: 'data/containers/closets/45696/'
+    rooms:
+        closet: 0.7
+        bedroom: 0.1
+        garage: 0.1
+        living_room: 0.1 # ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                sports: 'Sports/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Closet/Shoes/Sports/ data/containers/closets/45696/45696.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000 --side right --obj_scale 0.75
+                sandals: 'Sandals/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Closet/Shoes/Sandals/ data/containers/closets/45696/45696.urdf --num_objects 4 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000 --side left
+        upper_shelf:
+            path: 'shelf_1'
+            object_types:
+                formal: 'Formal/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Closet/Shoes/Formal/ data/containers/closets/45696/45696.urdf --num_objects 6 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --side left --obj_scale 0.8
+                hats: 'Hats/right'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Closet/Hats/ data/containers/closets/45696/45696.urdf --num_objects 4 --rot_randomization 0.15 --shelf_num 1 --num_generate 1000 --side right --obj_scale 0.6
+hardware_shelves:
+    label: 'shelves'
+    path: 'data/containers/closets/45696/'
+    rooms:
+        closet: 0.3
+        garage: 0.5
+        bedroom: 0.2 # ONLY TEST
+    shelves:
+        lower_shelf:
+            path: 'shelf_0'
+            object_types:
+                hardware: 'Hardware/right'
+                computer: 'Computer/left'
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bedroom/Tools/Hardware/ data/containers/closets/45696/45696.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000 --side right
+# X python scripts/generate_shelf_obj_placements.py data/objects/Bedroom/Tools/Computer/ data/containers/closets/45696/45696.urdf --num_objects 5 --rot_randomization 0.15 --shelf_num 0 --num_generate 1000 --side left --obj_scale 0.8
