@@ -270,7 +270,7 @@ def make_obj(object_label, parent, object_info=None, is_target=False, load_sim=F
     if 'location_img' in object_info:
         location_img = object_info['location_img']
     else:
-        location_img = np.array([0.0,0.0])
+        location_img = np.array(location[0],location[2])
     orientation = object_info['orientation']
     aabb = object_info['aabb']
     image_path = None
