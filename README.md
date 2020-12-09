@@ -1,2 +1,17 @@
-# Hierarchical Mechanical Search
-Searching for objects in indoor organized environments such as homes or offices is part of our everyday activities. When looking for a target object, we jointly reason about the rooms and containers the object is likely to be in; the same type of container will have a different probability of having the target depending on the room it is in. We also combine geometric and semantic information to infer what container is best to search, or what other object is best to remove, if the target object is hidden from view. We propose to use a 3D scene graph representation to capture the hierarchical, semantic and geometric structure of this problem. To exploit this representation in a search process, we introduce \textit{Hierarchical Mechanical Search (HMS)}, a method that guides agent's actions towards a target object specified with a natural language description. HMS includes a novel neural network architecture for neural message passing of vectors with visual, geometric, and linguistic information that allows HMS to reason across layers of the graph while combining semantic and geometric cues. HMS is evaluated on a novel dataset of 500 3D scene graphs with dense placements of semantically related objects in storage locations, and is shown to be significantly better than several baselines at finding objects and close to the oracle policy in terms of the median number of actions required. Additional qualitative results can be found at https://ai.stanford.edu/mech-search/hms
+This repository contains the code for the paper [Multi-Layer Semantic and Geometric Modeling with Neural Message Passing in 3D Scene Graphs for Hierarchical Mechanical Search](https://ai.stanford.edu/mech-search/hms/).
+
+## Installation
+To install the code, just follow these steps:
+
+```
+git clone https://github.com/StanfordVL/HMS.git
+cd HMS
+virtualenv -p python3 env
+source env/bin/activate
+pip install -r requirements.txt
+pip install -e .
+```
+
+## Data
+Unfortunately due to having proprietary CAD files, we cannot release the data used for training publicly. To request a private copy, please email andreyk@stanford.edu
+
