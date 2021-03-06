@@ -13,11 +13,19 @@ import numpy as np
 import pybullet as pb
 import pybullet_data
 from pyquaternion import Quaternion
-from gibson2.core.simulator import Simulator
-from gibson2.core.physics.interactive_objects import InteractiveObj
-from gibson2.core.render.mesh_renderer.mesh_renderer_cpu import Instance
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+#from gibson2.core.simulator import Simulator
+#from gibson2.core.physics.interactive_objects import InteractiveObj
+#from gibson2.core.render.mesh_renderer.mesh_renderer_cpu import Instance
 
-class StaticObject(InteractiveObj):
+from gibson2.simulator import Simulator
+#from gibson2.physics.interactive_objects import InteractiveObj
+from gibson2.objects.articulated_object import ArticulatedObject
+from gibson2.render.mesh_renderer.mesh_renderer_cpu import Instance
+
+class StaticObject(ArticulatedObject):
 
     def __init__(self, obj_fname, scale=1.0):
         super(StaticObject, self).__init__(obj_fname, scale)
@@ -29,13 +37,15 @@ class StaticObject(InteractiveObj):
 
     def _load(self):
         body_id = pb.loadURDF(self.filename,
-                             globalScaling=self.scale,
-                             useFixedBase=1,
-                             flags=pb.URDF_USE_MATERIAL_COLORS_FROM_MTL)
+                         globalScaling=self.scale,
+                         useFixedBase=1,
+                         flags=pb.URDF_USE_MATERIAL_COLORS_FROM_MTL)
 
+        # Check if body_id is negative
+        assert(body_id >= 0)
         return body_id
 
-class ShelfObject(InteractiveObj):
+class ShelfObject(ArticulatedObject):
 
     def __init__(self, obj_fname, scale=1.0):
         super(ShelfObject, self).__init__(obj_fname, scale)
@@ -138,10 +148,10 @@ class ContainerObjectsEnv(object):
             self.simulator = Simulator(image_width=self.image_width, image_height=self.image_height)
         else:
             self.simulator = Simulator(image_width=self.image_width, image_height=self.image_height,
-                                       mode='headless',
-                                       timestep=0.001)
+                                       mode='headless') #,
+                                       #timestep=0.001)
         pb.setAdditionalSearchPath(pybullet_data.getDataPath())
-        pb.loadURDF('plane.urdf')
+        # pb.loadURDF('plane.urdf')
 
         # set up renderer
         self.adjust_camera([self.camera_x, self.camera_y, self.camera_height], [0,0,0], [-1,0,0])
@@ -152,7 +162,10 @@ class ContainerObjectsEnv(object):
         with suppress_stdout_stderr():
             self.simulator.reload()
             self.container = container
+            # try:
             self.simulator.import_object(container)
+            # except Exception as ex:
+                # print(f'Error with importing object for simulator: {str(ex)}')
             container.set_position([0,0,container.size[2]/2.0])
             self.objects = {}
 
@@ -250,6 +263,8 @@ class ContainerObjectsEnv(object):
 
         if save:
             save_dir = './rendered_images/'
+            if not os.path.isdir(save_dir):
+                os.mkdir(save_dir)
             save_time = str(time.time())
             plt.imshow(segmask_im)
             plt.title('segmask')
@@ -363,6 +378,8 @@ class ContainerObjectsEnv(object):
         try:
             if save:
                 save_dir = './sim_images/'
+                if not os.path.isdir(save_dir):
+                    os.mkdir(save_dir)
                 plt.imshow(obj_color)
                 save_time = str(time.time())
                 plt.savefig(save_dir + "im_" + save_time + '_.png')
