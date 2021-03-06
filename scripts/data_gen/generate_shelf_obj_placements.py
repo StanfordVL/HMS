@@ -5,6 +5,9 @@ from __future__ import print_function
 import copy
 import sys
 import os
+sys.path.append('.')
+sys.path.append('..')
+sys.path.append('../..')
 import numpy as np
 import argparse
 import random
@@ -43,14 +46,18 @@ def generate_shelf_placements(objects_path,
 
     container = ObjectContainer(args.container_file)
     env = ContainerObjectsEnv(show_gui=show_gui)
+    print(f'container attributes: {dir(container)}')
+    print(f'filename: {container.filename}')
     shelf_height = container.shelf_heights[shelf_num]
     num_placements_finished = 0
+    print(f'num generate: {num_generate}')
     while num_placements_finished < num_generate:
         print('Generating placements %d'%num_placements_finished)
         gen_num = count_start + num_placements_finished
         container = ObjectContainer(args.container_file)
         env.reset(container)
         objects = os.listdir(objects_path)
+        print(f'objects dir: {objects}')
         result_dict = {}
         error_flag = False
         target_obj_left = True
@@ -68,6 +75,7 @@ def generate_shelf_placements(objects_path,
             item_to_add = np.random.choice(objects)
             print('Attempting to place %s'%item_to_add)
             obj_dir = os.path.join(objects_path, item_to_add, 'meshes')
+            print(f'object dir path: {obj_dir}')
             obj_file = next(filter(lambda x: 'urdf' in x, os.listdir(obj_dir)), None)
             obj_fname = obj_dir + '/' + obj_file
             obj = ShelfObject(obj_fname, obj_scale)
@@ -171,11 +179,12 @@ def generate_shelf_placements(objects_path,
                 obj_dict['dimension'] = [rlen,clen]
 
                 env.set_camera_point_at(obj_dict['location'])
-                rgb, depth, segmask = env.get_observation(obj_id, save=False)
+                rgb, depth, segmask = env.get_observation(obj_id, visualize=False, save=False)
                 obj_image = env.get_obj_img(rgb, segmask, save=False)
                 obj_dict['image'] = obj_image
 
             filename = os.path.join(gen_save_dir, 'shelf_setup_%d.pkl'%gen_num)
+            print(f'save pickle at: {filename}')
             with open(filename,'wb') as f:
                 pickle.dump(result_dict,f)
             num_placements_finished+=1
