@@ -179,9 +179,13 @@ def generate_shelf_placements(objects_path,
                 obj_dict['dimension'] = [rlen,clen]
 
                 env.set_camera_point_at(obj_dict['location'])
-                rgb, depth, segmask = env.get_observation(obj_id, visualize=False, save=False)
-                obj_image = env.get_obj_img(rgb, segmask, save=False)
+                rgb, depth, segmask = env.get_observation(obj_id, visualize=False, save=True)
+                obj_image = env.get_obj_img(rgb, segmask, save=True)
                 obj_dict['image'] = obj_image
+                # Add the rgb and depth images
+                obj_dict['rgb'] = rgb
+                obj_dict['depth'] = depth
+                obj_dict['segmask'] = segmask
 
             filename = os.path.join(gen_save_dir, 'shelf_setup_%d.pkl'%gen_num)
             print(f'save pickle at: {filename}')

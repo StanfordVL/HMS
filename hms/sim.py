@@ -14,7 +14,7 @@ import pybullet as pb
 import pybullet_data
 from pyquaternion import Quaternion
 import matplotlib
-matplotlib.use('TkAgg')
+#matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 #from gibson2.core.simulator import Simulator
 #from gibson2.core.physics.interactive_objects import InteractiveObj
@@ -354,7 +354,7 @@ class ContainerObjectsEnv(object):
 
         with open(abs_path, 'rb') as file:
             data = pickle.load(file)
-
+        # Missing this function
         self.add_objects(data, container_id)
 
     def get_obj_img(self, color_obs, segmask, zoom_factor=1.2, save=False):
