@@ -187,7 +187,7 @@ class ContainerObjectsEnv(object):
         rgb, im3d = self.simulator.renderer.render(modes=('rgb','3d'))
         depth = im3d[:,:,2]
 
-        return rgb, -depth
+        return rgb, -depth, im3d, -im3d
 
     def get_renderer_rgb(self):
         rgb = self.simulator.renderer.render(modes=('rgb'))[0]
@@ -241,7 +241,7 @@ class ContainerObjectsEnv(object):
                         save=False,
                         demo=False,
                         randomize_camera=False):
-        rgb_im, depth_im = self.get_renderer_rgb_depth()
+        rgb_im, depth_im, im3d, depth_im3d = self.get_renderer_rgb_depth()
         if segmak_object_id:
             segmask_im = self.get_renderer_segmask(segmak_object_id)
 
@@ -282,8 +282,8 @@ class ContainerObjectsEnv(object):
             plt.close()
 
         if segmak_object_id:
-            return rgb_im, depth_im, segmask_im
-        return rgb_im, depth_im
+            return rgb_im, depth_im, segmask_im, im3d, depth_im3d
+        return rgb_im, depth_im, im3d, depth_im3d
 
     def get_obj_ids(self):
         return list(self.objects.keys())
