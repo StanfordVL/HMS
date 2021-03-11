@@ -236,7 +236,7 @@ class ContainerObjectsEnv(object):
         self.simulator.sync()
 
     def get_camera_intrinsics(self):
-        K = self.simulator.renderer.get_intrinsincs()
+        K = self.simulator.renderer.get_intrinsics()
         return K
 
     def get_observation(self,
