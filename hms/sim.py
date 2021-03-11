@@ -235,6 +235,10 @@ class ContainerObjectsEnv(object):
                            randomize=randomize)
         self.simulator.sync()
 
+    def get_camera_intrinsics(self):
+        K = self.simulator.renderer.get_intrinsincs()
+        return K
+
     def get_observation(self,
                         segmak_object_id=None,
                         visualize=False,
