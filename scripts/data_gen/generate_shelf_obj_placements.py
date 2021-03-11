@@ -178,8 +178,22 @@ def generate_shelf_placements(objects_path,
                 obj_dict['location_img'] = [rmean,cmean]
                 obj_dict['dimension'] = [rlen,clen]
 
+                env.set_camera_point_at(obj_dict['location'])
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True)
+                obj_image = env.get_obj_img(rgb, segmask, save=True)
+                obj_dict['image'] = obj_image
+                # Add the rgb and depth images
+                obj_dict['rgb'] = rgb
+                obj_dict['depth'] = depth
+                obj_dict['segmask'] = segmask
+                obj_dict['im3d'] = im3d
+                obj_dict['depth_im3d'] = depth_im3d
+                # Get camera intrinsics
+                K = env.get_camera_intrinsics()
+                obj_dict['K'] = K
+
                 # Try placing camera and opposite axis directions
-                z_mean_loc = np.array([mean_loc[0], mean_loc[1], -mean_loc[2]])
+                z_mean_loc = np.array([obj_dict['location'][0], obj_dict['location'][1], -obj_dict['location'][2]])
                 env.set_camera_point_at(z_mean_loc, dist=0.45)
                 _, _, segmask, _, _ = env.get_observation(obj_id)
                 location = np.array([0.0,0.0,0.0])
@@ -197,20 +211,6 @@ def generate_shelf_placements(objects_path,
                 clen = cmax-cmin
                 obj_dict['z_location_img'] = [rmean,cmean]
                 obj_dict['z_dimension'] = [rlen,clen]
-
-                env.set_camera_point_at(obj_dict['location'])
-                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True)
-                obj_image = env.get_obj_img(rgb, segmask, save=True)
-                obj_dict['image'] = obj_image
-                # Add the rgb and depth images
-                obj_dict['rgb'] = rgb
-                obj_dict['depth'] = depth
-                obj_dict['segmask'] = segmask
-                obj_dict['im3d'] = im3d
-                obj_dict['depth_im3d'] = depth_im3d
-                # Get camera intrinsics
-                K = env.get_camera_intrinsics()
-                obj_dict['K'] = K
 
             filename = os.path.join(gen_save_dir, 'shelf_setup_%d.pkl'%gen_num)
             print(f'save pickle at: {filename}')
