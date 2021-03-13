@@ -191,26 +191,40 @@ def generate_shelf_placements(objects_path,
                 # Get camera intrinsics
                 K = env.get_camera_intrinsics()
                 obj_dict['K'] = K
+                # Get the projection matrix
+                P = env.get_projection_matrix()
+                obj_dict['P'] = P
+                V = env.get_V()
+                obj_dict['V'] = V
+                lightP = env.get_lightP()
+                obj_dict['lightP'] = lightP
+                lightV = env.get_lightV()
+                obj_dict['lightV'] = lightV
 
-                # Try placing camera and opposite axis directions
-                z_mean_loc = np.array([obj_dict['location'][0], obj_dict['location'][1], -obj_dict['location'][2]])
-                env.set_camera_point_at(z_mean_loc, dist=0.45)
-                _, _, segmask, _, _ = env.get_observation(obj_id)
-                location = np.array([0.0,0.0,0.0])
-                if not np.any(segmask):
-                    obj_dict['z_location_img'] = [0.0,0.0]
-                    obj_dict['z_dimension'] = [0.0,0.0]
-                    continue
-                rows = np.any(segmask, axis=0)
-                cols = np.any(segmask, axis=1)
-                rmin, rmax = np.where(rows)[0][[0, -1]]
-                cmin, cmax = np.where(cols)[0][[0, -1]]
-                rmean = (rmin+rmax)/2
-                cmean = (cmin+cmax)/2
-                rlen = rmax-rmin
-                clen = cmax-cmin
-                obj_dict['z_location_img'] = [rmean,cmean]
-                obj_dict['z_dimension'] = [rlen,clen]
+                # Try different camera positions (hopefully)
+                env.set_camera_point_at(obj_dict['location'], randomize=True)
+                rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True)
+                obj_image = env.get_obj_img(rgb, segmask, save=True)
+                obj_dict['image_rand'] = obj_image
+                # Add the rgb and depth images
+                obj_dict['rgb_rand'] = rgb
+                obj_dict['depth_rand'] = depth
+                obj_dict['segmask_rand'] = segmask
+                obj_dict['im3d_rand'] = im3d
+                obj_dict['depth_im3d_rand'] = depth_im3d
+                # Get camera intrinsics
+                K_rand = env.get_camera_intrinsics()
+                obj_dict['K_rand'] = K_rand
+                # get projection matrix
+                P_rand = env.get_projection_matrix()
+                obj_dict['P_rand'] = P_rand
+                V_rand = env.get_V()
+                obj_dict['V_rand'] = V_rand
+                lightP_rand = env.get_lightP()
+                obj_dict['lightP_rand'] = lightP_rand
+                lightV_rand = env.get_lightV()
+                obj_dict['lightV_rand'] = lightV_rand
+
 
             filename = os.path.join(gen_save_dir, 'shelf_setup_%d.pkl'%gen_num)
             print(f'save pickle at: {filename}')

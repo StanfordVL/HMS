@@ -39,13 +39,33 @@ for placement in PICKLE_PATH:
             print(f'{path}')
             Path(path).mkdir(parents=True, exist_ok=True)
             np.save(path+'/'+title, p[key]['im3d'])
+            np.save(path+'/'+title+'_rand', p[key]['im3d_rand'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_depth_im3d'
             np.save(path+'/'+title, p[key]['depth_im3d'])
+            np.save(path+'/'+title+'_rand', p[key]['depth_im3d_rand'])
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_segmask'
             np.save(path+'/'+title, p[key]['segmask'])
+            np.save(path+'/'+title+'_rand', p[key]['segmask_rand']) 
 
             title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_camera_intrinsics'
             np.save(path+'/'+title, p[key]['K'])
+            np.save(path+'/'+title+'_rand', p[key]['K_rand'])
+
+            title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_P'
+            np.save(path+'/'+title, p[key]['P'])
+            np.save(path+'/'+title+'_rand', p[key]['P_rand'])
+
+            title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_V'
+            np.save(path+'/'+title, p[key]['V'])
+            np.save(path+'/'+title+'_rand', p[key]['V_rand'])
+
+            title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_lightP'
+            np.save(path+'/'+title, p[key]['lightP'])
+            np.save(path+'/'+title+'_rand', p[key]['lightP_rand'])
+
+            title = shelf + '_' + obj + '_' + file.split('/')[-1].split('.')[0] + '_' + str(key) + '_lightV'
+            np.save(path+'/'+title, p[key]['lightV'])
+            np.save(path+'/'+title+'_rand', p[key]['lightV_rand'])
 

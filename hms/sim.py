@@ -239,6 +239,22 @@ class ContainerObjectsEnv(object):
         K = self.simulator.renderer.get_intrinsics()
         return K
 
+    def get_projection_matrix(self):
+        P = self.simulator.renderer.P
+        return P
+
+    def get_V(self):
+        V = self.simulator.renderer.V
+        return V
+
+    def get_lightV(self):
+        lightV = self.simulator.renderer.lightV
+        return lightV
+
+    def get_lightP(self):
+        lightP = self.simulator.renderer.lightP
+        return lightP
+
     def get_observation(self,
                         segmak_object_id=None,
                         visualize=False,
