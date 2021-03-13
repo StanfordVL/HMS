@@ -171,8 +171,8 @@ class ContainerObjectsEnv(object):
 
     def adjust_camera(self, camera_eye_position, camera_target_position, camera_up_vector, randomize=False):
         if randomize:
-            self.simulator.renderer.set_camera(camera_eye_position+np.random.random(3)*0.1,
-                                               camera_target_position+np.random.random(3)*0.1,
+            self.simulator.renderer.set_camera(camera_eye_position+np.random.random(3)*0.3,
+                                               camera_target_position+np.random.random(3)*0.3,
                                                camera_up_vector)
         else:
             self.simulator.renderer.set_camera(camera_eye_position,
@@ -288,17 +288,17 @@ class ContainerObjectsEnv(object):
             save_time = str(time.time())
             plt.imshow(segmask_im)
             plt.title('segmask')
-            plt.savefig(save_dir + "segmask_im_" + save_time + '_.png')
+            plt.savefig(save_dir + "_" + segmak_object_id +"_segmask_im_" + save_time + '_.png')
             plt.close()
 
             plt.imshow(rgb_im)
             plt.title('rgb')
-            plt.savefig(save_dir + "rgb_im_" + save_time + '_.png')
+            plt.savefig(save_dir + "_" + segmak_object_id + "_rgb_im_" + save_time + '_.png')
             plt.close()
 
             plt.imshow(depth_im)
             plt.title('depth')
-            plt.savefig(save_dir + "depth_im_" + save_time + '_.png')
+            plt.savefig(save_dir + "_" + segmak_object_id + "_depth_im_" + save_time + '_.png')
             plt.close()
 
         if segmak_object_id:

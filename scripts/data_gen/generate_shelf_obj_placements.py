@@ -157,6 +157,7 @@ def generate_shelf_placements(objects_path,
             mean_loc/=len(result_dict)
 
             rgb, depth, im3d, depth_im3d = env.get_observation()
+            print(f"obj_ids: {result_dict.keys()}")
             for obj_id in result_dict:
                 obj_dict = result_dict[obj_id]
 
@@ -181,11 +182,11 @@ def generate_shelf_placements(objects_path,
                 env.set_camera_point_at(obj_dict['location'])
                 rgb, depth, segmask, im3d, depth_im3d = env.get_observation(obj_id, visualize=False, save=True)
                 obj_image = env.get_obj_img(rgb, segmask, save=True)
-                obj_dict['image'] = obj_image
+                obj_dict[obj_id+'_image'] = obj_image
                 # Add the rgb and depth images
                 obj_dict['rgb'] = rgb
                 obj_dict['depth'] = depth
-                obj_dict['segmask'] = segmask
+                obj_dict[obj_id+'_segmask'] = segmask
                 obj_dict['im3d'] = im3d
                 obj_dict['depth_im3d'] = depth_im3d
                 # Get camera intrinsics
@@ -209,7 +210,7 @@ def generate_shelf_placements(objects_path,
                 # Add the rgb and depth images
                 obj_dict['rgb_rand'] = rgb
                 obj_dict['depth_rand'] = depth
-                obj_dict['segmask_rand'] = segmask
+                obj_dict[obj_id+'_segmask_rand'] = segmask
                 obj_dict['im3d_rand'] = im3d
                 obj_dict['depth_im3d_rand'] = depth_im3d
                 # Get camera intrinsics
